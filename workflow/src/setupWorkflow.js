@@ -7,6 +7,9 @@ import Shell from './Shell';
 import Dropbox from './Dropbox'
 
 class setupWorkflow extends Component{
+    getLengthOfCurrentWorkFlow = () =>{
+        return data[1]["Stages"].length;
+    }
     render(){
 
       return(
@@ -15,7 +18,17 @@ class setupWorkflow extends Component{
             <DragDropContextProvider backend={HTML5Backend}>
             <div>
                 <div style={{ overflow: 'hidden', clear: 'both' }}>
-						<Dropbox />
+                {
+                    
+                    data[0]["Actions"].map((element,i) => {
+                        if(i <= this.getLengthOfCurrentWorkFlow()-1){
+                            return <Dropbox key={i} name={"index_"+i} data={data[1]["Stages"][i]["action"]}/>
+                        }else{
+                            return <Dropbox key={i} name={"index_"+i} data={""}/>
+                        }
+                        
+                    })
+                }
 				</div>
 			
 					<div style={{ overflow: 'hidden', clear: 'both' }}>
