@@ -33,10 +33,12 @@ class setupWorkflow extends Component{
 			
 					<div style={{ overflow: 'hidden', clear: 'both' }}>
                         {
-                            data[0]["Actions"].map((element)=>{
-                                return <Shell name={element} /> 
+                            data[0]["Actions"].map((element,i)=>{
+                                return <Shell key={i} name={element} /> 
                             })
+                           
                         }
+                        <Shell name={"Remove"} />
 					</div>
 				</div>
 			</DragDropContextProvider>

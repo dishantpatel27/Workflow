@@ -18,7 +18,7 @@ const style = {
 
 const boxTarget = {
 	drop(props) {
-		return { name: props.name}
+		return { name: props.name, component:this}
 	},
 }
 
@@ -42,7 +42,7 @@ class Dropbox extends Component {
 
 		return connectDropTarget(
 			
-			<div style={{ ...style, backgroundColor }}>
+			<div style={{ ...style, backgroundColor }} id={this.props.name}>
 				{this.props.data}
 			</div>,
 		)
