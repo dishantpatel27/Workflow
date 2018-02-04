@@ -33,8 +33,6 @@ const boxSource = {
 				return;
 			}
 			elem.text(item.name);
-			alert(`You dropped ${item.name} into ${dropResult.name}!`) // eslint-disable-line no-alert
-			
 		}
 	},
 }
@@ -50,7 +48,6 @@ class Shell extends Component {
 		const { isDragging, connectDragSource } = this.props
 		const { name } = this.props
 		const opacity = isDragging ? 0.4 : 1
-
 		return connectDragSource(<div style={{ ...style, opacity }}>{name}</div>)
 	}
 }

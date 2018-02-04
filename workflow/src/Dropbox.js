@@ -35,9 +35,9 @@ class Dropbox extends Component {
 
 		let backgroundColor = '#222'
 		if (isActive) {
-			backgroundColor = 'darkgreen'
+			backgroundColor = 'mediumvioletred '
 		} else if (canDrop) {
-			backgroundColor = 'darkkhaki'
+			backgroundColor = 'indigo'
 		}
 
 		return connectDropTarget(
