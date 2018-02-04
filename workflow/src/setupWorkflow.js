@@ -7,12 +7,12 @@ import Shell from './Shell';
 import Dropbox from './Dropbox';
 import $ from 'jquery';
 
-class setupWorkflow extends Component{
+class setupWorkflow extends Component{ // returns the length of the array with Stages as the key
     getLengthOfCurrentWorkFlow = () =>{
         return data[1]["Stages"].length;
     }
 
-    saveHandler = (event) =>{
+    saveHandler = (event) =>{ // Updates the workflow 
         var container = $("#Dropbox");
         Array.prototype.forEach.call(container.children(), element => {
             var regexp = new RegExp("[0-9]+");
@@ -62,7 +62,7 @@ class setupWorkflow extends Component{
         alert("Saved!");
     }
 
-    discardChanges = (event) =>{
+    discardChanges = (event) =>{// discards changes
         alert("Changes Discarded!");
         this.props.history.push("/");
     }
@@ -73,32 +73,29 @@ class setupWorkflow extends Component{
         <div>
             <h1 style={{textAlign: "center"}}>Setup Workflow</h1>
             <DragDropContextProvider backend={HTML5Backend}>
-            <div>
-                <h2>Workflow</h2>
-                <div id="Dropbox" style={{ overflow: 'hidden', clear: 'both', padding: "50px",margin: "auto" }}>
-                {
-                    
-                    data[0]["Actions"].map((element,i) => {
-                        if(i <= this.getLengthOfCurrentWorkFlow()-1){
-                            return <Dropbox key={i} name={"index_"+i} data={data[1]["Stages"][i]["action"]}/>
-                        }else{
-                            return <Dropbox key={i} name={"index_"+i} data={""}/>
-                        }
-                        
-                    })
-                }
-				</div>
+                <div>
+                    <h2>Workflow</h2>
+                    <div id="Dropbox" style={{ overflow: 'hidden', clear: 'both', padding: "50px",margin: "auto" }}>
+                    {
+                        data[0]["Actions"].map((element,i) => { // creates container for the actions to be dropped into
+                            if(i <= this.getLengthOfCurrentWorkFlow()-1){
+                                return <Dropbox key={i} name={"index_"+i} data={data[1]["Stages"][i]["action"]}/>
+                            }else{
+                                return <Dropbox key={i} name={"index_"+i} data={""}/>
+                            }
+                        })
+                    }
+                    </div>
                     <h2>Actions</h2>
-					<div id="Shell" style={{ overflow: 'hidden', clear: 'both',padding: "50px", margin: "auto" }}>
-                        {
+                    <div id="Shell" style={{ overflow: 'hidden', clear: 'both',padding: "50px", margin: "auto" }}>
+                        { // draggable action Shells
                             data[0]["Actions"].map((element,i)=>{
                                 return <Shell key={i} name={element} data={data}/> 
                             })
-                           
                         }
                         <Shell name={"Remove"} />
-					</div>
-				</div>
+                    </div>
+                </div>
 			</DragDropContextProvider>
             <div>
                 <button style={{marginLeft: "50px" }} onClick={this.saveHandler}>Save Current WorkFlow</button>
@@ -108,8 +105,5 @@ class setupWorkflow extends Component{
         </div>
       );
     }
-
   }
-
-
 export default setupWorkflow;

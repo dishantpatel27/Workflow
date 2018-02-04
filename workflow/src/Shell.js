@@ -24,9 +24,9 @@ const boxSource = {
 	},
 
 	endDrag(props, monitor) {
-		const item = monitor.getItem()
-		const dropResult = monitor.getDropResult()
-		if (dropResult) {
+		const item = monitor.getItem() //get action dragged
+		const dropResult = monitor.getDropResult() //get dropbox parameters
+		if (dropResult) {// updating the content of the container(Dropbox) as per the actions dragged into it
 			var elem = $(`#${dropResult.name}`);
 			if(item.name === "Remove"){
 				elem.text("");
@@ -48,7 +48,7 @@ class Shell extends Component {
 		const { isDragging, connectDragSource } = this.props
 		const { name } = this.props
 		const opacity = isDragging ? 0.4 : 1
-		return connectDragSource(<div style={{ ...style, opacity }}>{name}</div>)
+		return connectDragSource(<div style={{ ...style, opacity }}>{name}</div>) // draggable action shells
 	}
 }
 

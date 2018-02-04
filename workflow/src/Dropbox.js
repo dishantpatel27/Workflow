@@ -31,11 +31,11 @@ class Dropbox extends Component {
 
 	render() {
 		const { canDrop, isOver, connectDropTarget } = this.props
-		const isActive = canDrop && isOver
+		const isActive = canDrop && isOver // altering container's background color by monitoring the action shell's dragging/dropping action
 
 		let backgroundColor = '#222'
 		if (isActive) {
-			backgroundColor = 'mediumvioletred '
+			backgroundColor = 'mediumvioletred'
 		} else if (canDrop) {
 			backgroundColor = 'indigo'
 		}
